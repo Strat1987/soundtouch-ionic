@@ -23,6 +23,10 @@
     {
       "locator": "https://github.com/driftyco/cordova-plugin-discovery",
       "id": "com.ionicsdk.discovery"
+    },
+    {
+      "locator": "https://github.com/vstirbu/ZeroConf",
+      "id": "com.triggertrap.ZeroConf"
     }
   ],
   "cordovaPlatforms": [

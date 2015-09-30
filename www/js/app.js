@@ -24,6 +24,20 @@ angular.module('soundtouch', ['ionic'])
     // --> https://github.com/agnat/node_mdns
     //TODO or try other plugin https://github.com/vstirbu/ZeroConf
   };
+    $scope.DiscoverZeroConf = function() {
+
+      alert('ZeroConf:' + ZeroConf);
+      ZeroConf.list('_http._tcp.local.', 500,
+        function(result) {
+          alert('ZeroConf success');
+          alert('result: ' + result);
+          $scope.zeroConfList = result;
+        },
+        function(error){
+          alert('ZeroConf error');
+        }
+      );
+    };
 }])
 
 .run(function($ionicPlatform) {
