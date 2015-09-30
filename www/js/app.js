@@ -5,6 +5,26 @@
 // the 2nd parameter is an array of 'requires'
 angular.module('soundtouch', ['ionic'])
 
+.controller('DiscoveryController', ['$scope', function($scope) {
+  $scope.Discover = function() {
+    alert('hello');
+    alert('Discovery:' + Discovery);
+    alert('identify:' + Discovery.identify);
+    $scope.serviceData = 'tempServiceData';
+    Discovery.identify(function(serviceData) {
+      // serviceData contains info about the identified service
+      alert('Identified serviceData');
+    }, function(error) {
+      alert('Error Identifying serviceData');
+    }, {
+      clientName: "soundtouch", // the name the server expects to see for clients connecting
+      port: 41234 // the port the service's broadcast service is running on
+    });
+    //TODO callback functions don't get triggered, maybe try to figure out how to use NPM module
+    // --> https://github.com/agnat/node_mdns
+  };
+}])
+
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
