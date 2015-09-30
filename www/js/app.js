@@ -27,10 +27,11 @@ angular.module('soundtouch', ['ionic'])
     $scope.DiscoverZeroConf = function() {
 
       alert('ZeroConf:' + ZeroConf);
-      ZeroConf.list('_http._tcp.local.', 500,
+      ZeroConf.list('_http._tcp.local.', 3000,
         function(result) {
           alert('ZeroConf success');
           alert('result: ' + result);
+          console.log(JSON.stringify(result));
           $scope.zeroConfList = result;
         },
         function(error){
