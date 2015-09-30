@@ -22,6 +22,7 @@ angular.module('soundtouch', ['ionic'])
     });
     //TODO callback functions don't get triggered, maybe try to figure out how to use NPM module
     // --> https://github.com/agnat/node_mdns
+    //TODO or try other plugin https://github.com/vstirbu/ZeroConf
   };
 }])
 
