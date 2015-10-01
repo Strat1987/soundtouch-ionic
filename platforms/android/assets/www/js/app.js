@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 angular.module('soundtouch', ['ionic'])
 
-.controller('DiscoveryController', ['$scope', function($scope) {
+.controller('DiscoveryController', ['$scope', '$rootScope', function($scope, $rootScope) {
   $scope.Discover = function() {
     alert('hello');
     alert('Discovery:' + Discovery);
@@ -27,18 +27,25 @@ angular.module('soundtouch', ['ionic'])
     $scope.DiscoverZeroConf = function() {
 
       alert('ZeroConf:' + ZeroConf);
-      ZeroConf.list('_http._tcp.local.', 3000,
+      ZeroConf.list('_soundtouch._tcp.local.', 3000,
         function(result) {
-          alert('ZeroConf success');
-          alert('result: ' + result);
-          console.log(JSON.stringify(result));
-          $scope.zeroConfList = result;
+          $scope.$apply(function () {
+            console.log('ZeroConf success: ' + JSON.stringify(result));
+            if (typeof result !== 'undefined') {
+              var deviceArray = result.service;
+              $scope.devices = deviceArray;
+            }
+          });
         },
         function(error){
           alert('ZeroConf error');
         }
       );
     };
+
+    $scope.SelectSoundtouch = function(url) {
+      alert('clicked on url: ' + url);
+    }
 }])
 
 .run(function($ionicPlatform) {

@@ -28,10 +28,10 @@
         <h1 class="title">Ionic Bose Soundtouch Starter</h1>
       </ion-header-bar>
       <ion-content>
-        <a href="" ng-click='Discover();'>do discovery</a>
-        <p>ServiceData: {{serviceData}}</p>
-        <a href="" ng-click='DiscoverZeroConf();'>do ZeroConf discovery (android only)</a>
-        <p>ZeroConf list: {{zeroConfList}}</p>
+        <button class="button button-positive" ng-click='DiscoverZeroConf();'>Soundtouch ZeroConf discovery (android only)</button>
+        <ul class="list" ng-repeat="d in devices">
+          <li class="item" ng-click="SelectSoundtouch('{{d.urls[0]}}');">{{d.name}}</li>
+        </ul>
       </ion-content>
     </ion-pane>
   </body>
