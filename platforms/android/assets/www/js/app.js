@@ -25,12 +25,10 @@ angular.module('soundtouch', ['ionic'])
     //TODO or try other plugin https://github.com/vstirbu/ZeroConf
   };
     $scope.DiscoverZeroConf = function() {
-
-      alert('ZeroConf:' + ZeroConf);
       ZeroConf.list('_soundtouch._tcp.local.', 3000,
         function(result) {
+          console.log('ZeroConf success: ' + JSON.stringify(result));
           $scope.$apply(function () {
-            console.log('ZeroConf success: ' + JSON.stringify(result));
             if (typeof result !== 'undefined') {
               var deviceArray = result.service;
               $scope.devices = deviceArray;
