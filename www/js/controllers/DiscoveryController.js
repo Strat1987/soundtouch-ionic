@@ -1,8 +1,10 @@
 angular.module('SoundTouchHack.controller.DiscoveryController', [])
 
-  .controller('DiscoveryController', function($scope, $rootScope){
+  .controller('DiscoveryController', function($scope, $rootScope, $localStorage){
 
     $scope.devices2 = [];
+
+    $rootScope.device = $localStorage.device;
 
     $scope.DiscoverZeroConf = function() {
       ZeroConf.list('_soundtouch._tcp.local.', 3000,
@@ -56,8 +58,8 @@ angular.module('SoundTouchHack.controller.DiscoveryController', [])
         });
       }
 
-      window.plugins.dnssd.browse("_http._tcp", "local", serviceFound, serviceLost);
-      window.plugins.dnssd.browse("_daap._tcp", "local", serviceFound, serviceLost);
+      //window.plugins.dnssd.browse("_http._tcp", "local", serviceFound, serviceLost);
+      //window.plugins.dnssd.browse("_daap._tcp", "local", serviceFound, serviceLost);
       //window.plugins.dnssd.browse("_soundtouch._tcp", "local", serviceFound, serviceLost);
     };
 
@@ -86,6 +88,7 @@ angular.module('SoundTouchHack.controller.DiscoveryController', [])
               hostName: hostName,
               port: port
             };
+            $localStorage.device = $rootScope.device;
           });
       });
     };
