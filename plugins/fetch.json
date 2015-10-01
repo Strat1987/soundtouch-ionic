@@ -1,17 +1,17 @@
 {
-    "com.ionicsdk.discovery": {
+    "com.triggertrap.ZeroConf": {
         "source": {
             "type": "git",
-            "url": "https://github.com/driftyco/cordova-plugin-discovery",
+            "url": "https://github.com/vstirbu/ZeroConf",
             "subdir": "."
         },
         "is_top_level": true,
         "variables": {}
     },
-    "com.triggertrap.ZeroConf": {
+    "fi.peekpoke.cordova.dnssd": {
         "source": {
             "type": "git",
-            "url": "https://github.com/vstirbu/ZeroConf",
+            "url": "https://github.com/jarnoh/cordova-dnssd",
             "subdir": "."
         },
         "is_top_level": true,

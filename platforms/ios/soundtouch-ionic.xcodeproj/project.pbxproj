@@ -39,8 +39,8 @@
 		7E7966E61810823500FA85AD /* icon-small.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E7966DC1810823500FA85AD /* icon-small.png */; };
 		7E7966E71810823500FA85AD /* icon-small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E7966DD1810823500FA85AD /* icon-small@2x.png */; };
 		D4A0D8761607E02300AEF8BB /* Default-568h@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A0D8751607E02300AEF8BB /* Default-568h@2x~iphone.png */; };
-		DF12B469C6B848CBAE3E386B /* CDVDiscovery.m in Sources */ = {isa = PBXBuildFile; fileRef = F7F14A42245A4A53BAC483C0 /* CDVDiscovery.m */; };
-		2C327E1645294AAC94FA2D0C /* GCDAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 2088C2FD9A56482AA5EDCBA7 /* GCDAsyncUdpSocket.m */; };
+		0D0590E0823C4F2587B64AF8 /* CDVLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = B3AAF7DBB530460D906E4897 /* CDVLogger.m */; };
+		AF0C97C058F84AA6B28F659A /* dnssd.m in Sources */ = {isa = PBXBuildFile; fileRef = 6A3FE66956C54CFEAAF87690 /* dnssd.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,10 +106,10 @@
 		EB87FDF31871DA8E0020F90C /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; name = www; path = ../../www; sourceTree = "<group>"; };
 		EB87FDF41871DAF40020F90C /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = ../../config.xml; sourceTree = "<group>"; };
 		F840E1F0165FE0F500CFE078 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = "soundtouch-ionic/config.xml"; sourceTree = "<group>"; };
-		F7F14A42245A4A53BAC483C0 /* CDVDiscovery.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVDiscovery.m"; path = "com.ionicsdk.discovery/CDVDiscovery.m"; sourceTree = "<group>"; fileEncoding = 4; };
-		2088C2FD9A56482AA5EDCBA7 /* GCDAsyncUdpSocket.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "GCDAsyncUdpSocket.m"; path = "com.ionicsdk.discovery/GCDAsyncUdpSocket.m"; sourceTree = "<group>"; fileEncoding = 4; };
-		F602827C88B446F9870EB674 /* CDVDiscovery.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVDiscovery.h"; path = "com.ionicsdk.discovery/CDVDiscovery.h"; sourceTree = "<group>"; fileEncoding = 4; };
-		E6CFF4D94CFB43339CFB289D /* GCDAsyncUdpSocket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "GCDAsyncUdpSocket.h"; path = "com.ionicsdk.discovery/GCDAsyncUdpSocket.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		B3AAF7DBB530460D906E4897 /* CDVLogger.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVLogger.m"; path = "cordova-plugin-console/CDVLogger.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		C5C87CA7A1354EEB8E45B041 /* CDVLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVLogger.h"; path = "cordova-plugin-console/CDVLogger.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		6A3FE66956C54CFEAAF87690 /* dnssd.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "dnssd.m"; path = "fi.peekpoke.cordova.dnssd/dnssd.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		3178CB8BFD3543309E091D08 /* dnssd.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "dnssd.h"; path = "fi.peekpoke.cordova.dnssd/dnssd.h"; sourceTree = "<group>"; fileEncoding = 4; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -208,10 +208,10 @@
 		307C750510C5A3420062BCA9 /* Plugins */ = {
 			isa = PBXGroup;
 			children = (
-				F7F14A42245A4A53BAC483C0 /* CDVDiscovery.m */,
-				2088C2FD9A56482AA5EDCBA7 /* GCDAsyncUdpSocket.m */,
-				F602827C88B446F9870EB674 /* CDVDiscovery.h */,
-				E6CFF4D94CFB43339CFB289D /* GCDAsyncUdpSocket.h */,
+				B3AAF7DBB530460D906E4897 /* CDVLogger.m */,
+				C5C87CA7A1354EEB8E45B041 /* CDVLogger.h */,
+				6A3FE66956C54CFEAAF87690 /* dnssd.m */,
+				3178CB8BFD3543309E091D08 /* dnssd.h */,
 			);
 			name = Plugins;
 			path = "soundtouch-ionic/Plugins";
@@ -396,8 +396,8 @@
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* AppDelegate.m in Sources */,
 				302D95F114D2391D003F00A1 /* MainViewController.m in Sources */,
-				DF12B469C6B848CBAE3E386B /* CDVDiscovery.m in Sources */,
-				2C327E1645294AAC94FA2D0C /* GCDAsyncUdpSocket.m in Sources */,
+				0D0590E0823C4F2587B64AF8 /* CDVLogger.m in Sources */,
+				AF0C97C058F84AA6B28F659A /* dnssd.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

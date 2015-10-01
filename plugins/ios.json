@@ -9,7 +9,11 @@
                 "parents": {
                     "/*": [
                         {
-                            "xml": "<feature name=\"Discovery\"><param name=\"ios-package\" value=\"CDVDiscovery\" /><param name=\"onload\" value=\"true\" /></feature>",
+                            "xml": "<feature name=\"Console\"><param name=\"ios-package\" value=\"CDVLogger\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"fi.peekpoke.cordova.dnssd\"><param name=\"ios-package\" value=\"CDVBonjour\" /></feature>",
                             "count": 1
                         }
                     ]
@@ -18,10 +22,13 @@
         }
     },
     "installed_plugins": {
-        "com.ionicsdk.discovery": {
+        "com.triggertrap.ZeroConf": {
             "PACKAGE_NAME": "com.ionicframework.soundtouchionic266193"
         },
-        "com.triggertrap.ZeroConf": {
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "com.ionicframework.soundtouchionic266193"
+        },
+        "fi.peekpoke.cordova.dnssd": {
             "PACKAGE_NAME": "com.ionicframework.soundtouchionic266193"
         }
     },
