@@ -1,11 +1,9 @@
 <ion-view view-title="Discover Bose Soundtouch">
   <ion-content class="padding">
-      <button class="button button-positive" ng-click='DiscoverZeroConf();'>Soundtouch ZeroConf discovery (android only)</button>
-      <ion-item ng-repeat="d in devices" href="#/tab/soundtouch/{{d.url}}">
-        <h2>{{d.name}}</h2>
-      </ion-item>
-      <ion-item href="#/tab/soundtouch/test">
-        <h2>test</h2>
-      </ion-item>
+    <button class="button button-block button-positive" ng-click='Discover();'>Soundtouch Discovery</button>
+    <p>{{loading}}</p>
+    <ul class="list" ng-repeat="device in devices">
+      <li class="item" ng-click="selectSoundtouch();">{{device.serviceName}}</li>
+    </ul>
   </ion-content>
 </ion-view>

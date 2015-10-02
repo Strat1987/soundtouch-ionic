@@ -9,8 +9,8 @@ angular.module('soundtouch.services', [])
     volumeDown: function() {
       // TODO
     },
-    getVolume: function() {
-      return 10;
+    getVolume: function(device) {
+      return 0;
         // TODO
     }
   };

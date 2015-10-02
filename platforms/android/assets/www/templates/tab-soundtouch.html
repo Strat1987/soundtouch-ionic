@@ -1,5 +1,7 @@
 <ion-view view-title="Bose Soundtouch App">
   <ion-content>
-    Soundtouch URL: {{soundtouchUrl}}
+    <div ng-show="device.serviceName">Selected Device: {{device.serviceName}} {{device.hostName}}:{{device.port}}<br />
+    Volume: {{volume}}</div>
+    <button class="button button-block button-positive" ng-hide="device.serviceName" ng-click="selectDiscoverTab();">Select Device</button>
   </ion-content>
 </ion-view>

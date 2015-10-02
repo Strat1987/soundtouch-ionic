@@ -1,16 +1,15 @@
 angular.module('SoundTouchHack.controller.SoundTouchController', [])
 
-  .controller('SoundtouchController', ['$scope', '$rootScope', '$stateParams', '$localStorage', 'SoundtouchAPI',
-    function($scope, $rootScope, $stateParams, $localStorage, SoundtouchAPI) {
-    //$scope.soundtouchUrl = $rootScope.soundtouchUrl;
-
-
-
-    console.log('in soundtouchController');
-    $scope.soundtouchUrl = $stateParams.soundtouchUrl;
-    console.log('SoundtouchController URL: ' + $scope.soundtouchUrl);
-    console.log('SoundtouchAPI getVolume: ' + SoundtouchAPI.getVolume());
-
+  .controller('SoundtouchController', function($scope, $rootScope, $localStorage, SoundtouchAPI, $location) {
 
     $rootScope.device = $localStorage.device;
-  }]);
+    if(typeof $rootScope.device !== 'undefined') {
+      $scope.volume = SoundtouchAPI.getVolume($rootScope.device);
+      console.log('SoundtouchAPI getVolume: ' + $scope.volume);
+    }
+
+    $scope.selectDiscoverTab = function() {
+      console.log('Select Discover tab');
+      $location.path('#/tab/soundtouch');
+    }
+  });
