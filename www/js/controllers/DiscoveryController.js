@@ -7,12 +7,19 @@ angular.module('SoundTouchHack.controller.DiscoveryController', [])
     $rootScope.device = $localStorage.device;
 
     $scope.DiscoverZeroConf = function() {
+      // use '_soundtouch._tcp.local.' to find soundtouch, use '_http._tcp.local.' to find all
       ZeroConf.list('_soundtouch._tcp.local.', 3000,
         function(result) {
           console.log('ZeroConf success: ' + JSON.stringify(result));
           $scope.$apply(function () {
-            if (angular.isDefined(result)) {
+            if (typeof result !== 'undefined') {
               var deviceArray = result.service;
+              if(typeof deviceArray !== "undefined") {
+                for(var i = 0; i < deviceArray.length; i++) {
+                  var device = deviceArray[i];
+                  device.url = device.urls[0].replace('http://', '');
+                }
+              }
               $scope.devices = deviceArray;
             }
           });
@@ -22,6 +29,11 @@ angular.module('SoundTouchHack.controller.DiscoveryController', [])
         }
       );
     };
+    $scope.selectSoundtouch = function(url) {
+      console.log('selected soundtouch');
+      console.log('URL: ' + url);
+      $location.path(url);
+    }
 
     $scope.DiscoverBonjour = function() {
 
@@ -61,19 +73,6 @@ angular.module('SoundTouchHack.controller.DiscoveryController', [])
       //window.plugins.dnssd.browse("_http._tcp", "local", serviceFound, serviceLost);
       //window.plugins.dnssd.browse("_daap._tcp", "local", serviceFound, serviceLost);
       window.plugins.dnssd.browse("_soundtouch._tcp", "local", serviceFound, serviceLost);
-    };
-
-    $scope.SelectSoundtouch = function(url) {
-      alert('clicked on url: ' + url);
-      var device = this.device;
-
-      $rootScope.$apply(function () {
-        $rootScope.device = {
-          serviceName: device.serviceName,
-          hostName: url,
-          port: url
-        };
-      });
     };
 
     $scope.SelectSoundtouchIos = function() {
