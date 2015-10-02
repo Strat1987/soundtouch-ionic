@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('soundtouch', ['ionic', 'soundtouch.controllers', 'soundtouch.services'])
+angular.module('soundtouch', ['ionic', 'ngStorage', 'soundtouch.services', 'SoundTouchHack.controller.DiscoveryController', 'SoundTouchHack.controller.SoundTouchController'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {

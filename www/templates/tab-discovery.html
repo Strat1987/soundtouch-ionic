@@ -7,5 +7,14 @@
       <ion-item href="#/tab/soundtouch/test">
         <h2>test</h2>
       </ion-item>
+
+
+
+    <br />
+    <button class="button button-positive" ng-click='DiscoverBonjour();'>Soundtouch Bonjour discovery (ios only)</button>
+    <p>{{loading}}</p>
+    <ul class="list" ng-repeat="device in devices2">
+      <li class="item" ng-click="SelectSoundtouchIos()">{{device.serviceName}}</li>
+    </ul>
   </ion-content>
 </ion-view>

@@ -58,9 +58,9 @@ angular.module('SoundTouchHack.controller.DiscoveryController', [])
         });
       }
 
-      window.plugins.dnssd.browse("_http._tcp", "local", serviceFound, serviceLost);
-      window.plugins.dnssd.browse("_daap._tcp", "local", serviceFound, serviceLost);
-      //window.plugins.dnssd.browse("_soundtouch._tcp", "local", serviceFound, serviceLost);
+      //window.plugins.dnssd.browse("_http._tcp", "local", serviceFound, serviceLost);
+      //window.plugins.dnssd.browse("_daap._tcp", "local", serviceFound, serviceLost);
+      window.plugins.dnssd.browse("_soundtouch._tcp", "local", serviceFound, serviceLost);
     };
 
     $scope.SelectSoundtouch = function(url) {

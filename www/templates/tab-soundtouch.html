@@ -1,5 +1,8 @@
 <ion-view view-title="Bose Soundtouch App">
   <ion-content>
-    Soundtouch URL: {{soundtouchUrl}}
+    Soundtouch {{soundtouchUrl}}
+
+    <div ng-show="device.serviceName">Selected Device: {{device.serviceName}} {{device.hostName}}:{{device.port}}<br /></div>
+
   </ion-content>
 </ion-view>
