@@ -10,6 +10,7 @@ angular.module('soundtouch.services', [])
       // TODO
     },
     getVolume: function() {
+      return 10;
         // TODO
     }
   };

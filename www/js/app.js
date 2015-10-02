@@ -36,7 +36,7 @@ angular.module('soundtouch', ['ionic', 'soundtouch.controllers', 'soundtouch.ser
       // Each tab has its own nav history stack:
 
       .state('tab.soundtouch', {
-        url: '/soundtouch',
+        url: '/soundtouch/:soundtouchUrl',
         views: {
           'tab-soundtouch': {
             templateUrl: 'templates/tab-soundtouch.html',
@@ -56,6 +56,6 @@ angular.module('soundtouch', ['ionic', 'soundtouch.controllers', 'soundtouch.ser
       });
 
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/tab/soundtouch');
+    $urlRouterProvider.otherwise('/tab/discovery');
 
   });
