@@ -107,7 +107,7 @@ angular.module('SoundTouchHack.controller.DiscoveryController', [])
         console.log('for Android');
         $rootScope.device = device;
         $localStorage.device = device;
-        $location.path('#/tab/discovery');
+        $location.path('#/tab/soundtouch');
       }
     }
 

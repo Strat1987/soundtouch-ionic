@@ -10,6 +10,6 @@ angular.module('SoundTouchHack.controller.SoundTouchController', [])
 
     $scope.selectDiscoverTab = function() {
       console.log('Select Discover tab');
-      $location.path('#/tab/soundtouch');
+      $location.path('#/tab/discovery');
     }
   });
