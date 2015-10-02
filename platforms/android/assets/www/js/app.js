@@ -3,48 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('soundtouch', ['ionic'])
-
-.controller('DiscoveryController', ['$scope', '$rootScope', function($scope, $rootScope) {
-  $scope.Discover = function() {
-    alert('hello');
-    alert('Discovery:' + Discovery);
-    alert('identify:' + Discovery.identify);
-    $scope.serviceData = 'tempServiceData';
-    Discovery.identify(function(serviceData) {
-      // serviceData contains info about the identified service
-      alert('Identified serviceData');
-    }, function(error) {
-      alert('Error Identifying serviceData');
-    }, {
-      clientName: "soundtouch", // the name the server expects to see for clients connecting
-      port: 41234 // the port the service's broadcast service is running on
-    });
-    //TODO callback functions don't get triggered, maybe try to figure out how to use NPM module
-    // --> https://github.com/agnat/node_mdns
-    //TODO or try other plugin https://github.com/vstirbu/ZeroConf
-  };
-    $scope.DiscoverZeroConf = function() {
-      ZeroConf.list('_soundtouch._tcp.local.', 3000,
-        function(result) {
-          console.log('ZeroConf success: ' + JSON.stringify(result));
-          $scope.$apply(function () {
-            if (typeof result !== 'undefined') {
-              var deviceArray = result.service;
-              $scope.devices = deviceArray;
-            }
-          });
-        },
-        function(error){
-          alert('ZeroConf error');
-        }
-      );
-    };
-
-    $scope.SelectSoundtouch = function(url) {
-      alert('clicked on url: ' + url);
-    }
-}])
+angular.module('soundtouch', ['ionic', 'soundtouch.controllers', 'soundtouch.services'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -58,3 +17,45 @@ angular.module('soundtouch', ['ionic'])
     }
   });
 })
+
+  .config(function($stateProvider, $urlRouterProvider) {
+
+    // Ionic uses AngularUI Router which uses the concept of states
+    // Learn more here: https://github.com/angular-ui/ui-router
+    // Set up the various states which the app can be in.
+    // Each state's controller can be found in controllers.js
+    $stateProvider
+
+      // setup an abstract state for the tabs directive
+      .state('tab', {
+        url: '/tab',
+        abstract: true,
+        templateUrl: 'templates/tabs.html'
+      })
+
+      // Each tab has its own nav history stack:
+
+      .state('tab.soundtouch', {
+        url: '/soundtouch',
+        views: {
+          'tab-soundtouch': {
+            templateUrl: 'templates/tab-soundtouch.html',
+            controller: 'SoundtouchController'
+          }
+        }
+      })
+
+      .state('tab.discovery', {
+        url: '/discovery',
+        views: {
+          'tab-discovery': {
+            templateUrl: 'templates/tab-discovery.html',
+            controller: 'DiscoveryController'
+          }
+        }
+      });
+
+    // if none of the above states are matched, use this as the fallback
+    $urlRouterProvider.otherwise('/tab/soundtouch');
+
+  });
