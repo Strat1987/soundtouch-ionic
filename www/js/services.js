@@ -1,17 +1,29 @@
 angular.module('soundtouch.services', [])
 
-.factory('SoundtouchAPI', function() {
+.factory('SoundtouchAPI', function($http) {
 
   return {
-    volumeUp: function() {
-      // TODO
-    },
-    volumeDown: function() {
-      // TODO
+    setVolume: function(device) {
+      $http.post(device.hostName, {volume: device.volume}).then(
+      function(result){
+        console.log('succesfully posted volume');
+      },
+      function(error) {
+        console.log('error while posting volume');
+      }
+    );
     },
     getVolume: function(device) {
-      return 0;
-        // TODO
+      $http.get(device.hostName + '/volume').then(
+        function(result){
+          console.log('succesfully got volume');
+          device.volume = 50;
+        },
+        function(error) {
+          console.log('error while retreiving volume');
+          device.volume = 10;
+        }
+      );
     }
   };
 });

@@ -1,20 +1,16 @@
 angular.module('SoundTouchHack.controller.DiscoveryController', [])
 
-  .controller('DiscoveryController', function($scope, $rootScope, $localStorage, $location){
+  .controller('DiscoveryController', function($scope, $localStorage, $window){
 
-    $scope.devices = [];
+    $scope.$on('$ionicView.enter', function() {
+      $scope.devices = [];
+      $scope.loading = "Searching ...";
 
-    $rootScope.device = $localStorage.device;
-
-    $scope.Discover = function() {
-      if(ionic.Platform.isAndroid()) {
+      if (ionic.Platform.isAndroid()) {
         console.log('Searching using ZeroConf (android)');
 
-        $scope.loading = "Searching ...";
-        $scope.devices = [];
-
         // use '_soundtouch._tcp.local.' to find soundtouch, use '_http._tcp.local.' to find all
-        ZeroConf.list('_http._tcp.local.', 2000,
+        ZeroConf.list('_soundtouch._tcp.local.', 2000,
           function (result) {
             console.log('ZeroConf success: ' + JSON.stringify(result));
             $scope.$apply(function () {
@@ -40,17 +36,14 @@ angular.module('SoundTouchHack.controller.DiscoveryController', [])
             alert('ZeroConf error');
           }
         );
-      } else if(ionic.Platform.isIOS()) {
+      } else if (ionic.Platform.isIOS()) {
         console.log('Searching using Bonjour (IOS)');
 
-        $scope.loading = "Searching ...";
-        $scope.devices = [];
-
         function serviceLost(serviceName, regType, domain, moreComing) {
-          console.log("js serviceLost "+serviceName+" "+regType+" "+moreComing);
+          console.log("js serviceLost " + serviceName + " " + regType + " " + moreComing);
 
           $scope.$apply(function () {
-            angular.forEach($scope.devices, function(obj, index){
+            angular.forEach($scope.devices, function (obj, index) {
               if (obj.serviceName === serviceName) {
                 // remove the matching item from the array
                 $scope.devices.splice(index, 1);
@@ -60,7 +53,7 @@ angular.module('SoundTouchHack.controller.DiscoveryController', [])
         }
 
         function serviceFound(serviceName, regType, domain, moreComing) {
-          console.log("js serviceFound "+serviceName+" "+regType+" "+moreComing);
+          console.log("js serviceFound " + serviceName + " " + regType + " " + moreComing);
 
           $scope.$apply(function () {
             $scope.devices.push({
@@ -70,7 +63,7 @@ angular.module('SoundTouchHack.controller.DiscoveryController', [])
               moreComing: moreComing
             });
 
-            if(moreComing === false) {
+            if (moreComing === false) {
               $scope.loading = "";
             }
           });
@@ -82,7 +75,8 @@ angular.module('SoundTouchHack.controller.DiscoveryController', [])
       } else {
         alert('Your mobile platform is not supported by the soundtouch app');
       }
-    };
+    });
+
     $scope.selectSoundtouch = function() {
       console.log('selectSoundtouch');
       var device = this.device;
@@ -93,21 +87,17 @@ angular.module('SoundTouchHack.controller.DiscoveryController', [])
           function (hostName, port, serviceName, regType, domain) {
             //alert(serviceName+" is at "+hostName+":"+port);
 
-            $rootScope.$apply(function () {
-              $rootScope.device = {
+              $localStorage.device = {
                 serviceName: serviceName,
                 hostName: hostName,
                 port: port
               };
-              $localStorage.device = $rootScope.device;
-              $location.path('#/tab/soundtouch');
-            });
+              $window.location.href = '#/tab/soundtouch';
           });
       } else if(ionic.Platform.isAndroid()) {
         console.log('for Android');
-        $rootScope.device = device;
         $localStorage.device = device;
-        $location.path('#/tab/soundtouch');
+        $window.location.href = '#/tab/soundtouch';
       }
     }
 

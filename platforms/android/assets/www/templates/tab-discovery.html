@@ -1,7 +1,6 @@
 <ion-view view-title="Discover Bose Soundtouch">
   <ion-content class="padding">
-    <button class="button button-block button-positive" ng-click='Discover();'>Soundtouch Discovery</button>
-    <p>{{loading}}</p>
+    <h5>{{loading}}</h5>
     <ul class="list" ng-repeat="device in devices">
       <li class="item" ng-click="selectSoundtouch();">{{device.serviceName}}</li>
     </ul>

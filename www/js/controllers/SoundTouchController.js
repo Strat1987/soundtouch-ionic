@@ -1,15 +1,24 @@
 angular.module('SoundTouchHack.controller.SoundTouchController', [])
 
-  .controller('SoundtouchController', function($scope, $rootScope, $localStorage, SoundtouchAPI, $location) {
+.controller('SoundtouchController', function($scope, $localStorage, SoundtouchAPI, $window) {
 
-    $rootScope.device = $localStorage.device;
-    if(typeof $rootScope.device !== 'undefined') {
-      $scope.volume = SoundtouchAPI.getVolume($rootScope.device);
+  $scope.$on('$ionicView.enter', function() {
+    $scope.device = $localStorage.device;
+    if (typeof $scope.device !== 'undefined') {
+      $scope.device.volume = SoundtouchAPI.getVolume($scope.device);
       console.log('SoundtouchAPI getVolume: ' + $scope.volume);
-    }
 
-    $scope.selectDiscoverTab = function() {
-      console.log('Select Discover tab');
-      $location.path('#/tab/discovery');
     }
   });
+
+  $scope.volumeChanged = function() {
+    console.log('Volume has changed: ' + $scope.device.volume);
+    SoundtouchAPI.setVolume($scope.device);
+  };
+
+  $scope.selectDiscoverTab = function() {
+    console.log('Select Discover tab');
+    $window.location.href = '#/tab/discovery';
+  };
+
+});
