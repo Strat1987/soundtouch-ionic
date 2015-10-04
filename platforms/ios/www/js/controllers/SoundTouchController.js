@@ -1,16 +1,26 @@
-angular.module('SoundTouchHack.controller.SoundTouchController', [])
+angular.module('SoundTouchHack.controller.SoundTouchController', ['SoundTouchHack.service.SoundTouchAPI'])
 
-  .controller('SoundtouchController', ['$scope', '$rootScope', '$stateParams', '$localStorage', 'SoundtouchAPI',
-    function($scope, $rootScope, $stateParams, $localStorage, SoundtouchAPI) {
-    //$scope.soundtouchUrl = $rootScope.soundtouchUrl;
+.controller('SoundtouchController', function($scope, $localStorage, SoundtouchAPI, $window) {
 
+  $scope.$on('$ionicView.enter', function() {
 
+    $scope.device = $localStorage.device;
 
-    console.log('in soundtouchController');
-    $scope.soundtouchUrl = $stateParams.soundtouchUrl;
-    console.log('SoundtouchController URL: ' + $scope.soundtouchUrl);
-    console.log('SoundtouchAPI getVolume: ' + SoundtouchAPI.getVolume());
+    if (typeof $scope.device !== 'undefined') {
+      $scope.device.volume = SoundtouchAPI.getVolume($scope.device);
+      console.log('SoundtouchAPI getVolume: ' + $scope.volume);
 
+    }
+  });
 
-    $rootScope.device = $localStorage.device;
-  }]);
+  $scope.volumeChanged = function() {
+    console.log('Volume has changed: ' + $scope.device.volume);
+    SoundtouchAPI.setVolume($scope.device);
+  };
+
+  $scope.selectDiscoverTab = function() {
+    console.log('Select Discover tab');
+    $window.location.href = '#/tab/discovery';
+  };
+
+});

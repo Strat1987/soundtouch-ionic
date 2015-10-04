@@ -3,7 +3,12 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('soundtouch', ['ionic', 'ngStorage', 'soundtouch.services', 'SoundTouchHack.controller.DiscoveryController', 'SoundTouchHack.controller.SoundTouchController'])
+angular.module('soundtouch', [
+  'ionic',
+  'ngStorage',
+  'SoundTouchHack.controller.DiscoveryController',
+  'SoundTouchHack.controller.SoundTouchController'
+])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -36,7 +41,7 @@ angular.module('soundtouch', ['ionic', 'ngStorage', 'soundtouch.services', 'Soun
       // Each tab has its own nav history stack:
 
       .state('tab.soundtouch', {
-        url: '/soundtouch/:soundtouchUrl',
+        url: '/soundtouch',
         views: {
           'tab-soundtouch': {
             templateUrl: 'templates/tab-soundtouch.html',
@@ -56,6 +61,6 @@ angular.module('soundtouch', ['ionic', 'ngStorage', 'soundtouch.services', 'Soun
       });
 
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/tab/discovery');
+    $urlRouterProvider.otherwise('/tab/soundtouch');
 
   });
