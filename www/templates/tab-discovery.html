@@ -9,7 +9,7 @@
       <h5>Selected Device: {{device.serviceName}} {{device.hostName}}:{{device.port}}</h5>
     </div>
 
-    <button class="button button-block button-positive" ng-show="device" ng-click="forgotSelectedDevice();">Forgot selected Device</button>
+    <button class="button button-block button-positive" ng-show="device" ng-click="forgetSelectedDevice();">Forget selected Device</button>
 
     <ul class="list" ng-repeat="device in devices">
       <li class="item" ng-click="selectSoundtouch();">{{device.serviceName}}</li>
