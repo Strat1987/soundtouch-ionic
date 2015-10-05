@@ -28,7 +28,7 @@ angular.module('SoundTouchHack.controller.DiscoveryController', ['SoundTouchHack
       });
     };
 
-    $scope.forgotSelectedDevice = function() {
+    $scope.forgetSelectedDevice = function() {
       delete $scope.device;
       delete $localStorage.device;
     };

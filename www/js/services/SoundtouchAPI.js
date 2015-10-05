@@ -4,17 +4,26 @@ angular.module('SoundTouchHack.service.SoundTouchAPI', [])
 
     return {
       setVolume: function(device) {
-        $http.post(device.hostName, {volume: device.volume}).then(
-          function(result){
-            console.log('succesfully posted volume');
-          },
-          function(error) {
-            console.log('error while posting volume');
+        $http({
+          method  : 'POST',
+          url     : 'http://' + device.hostName + ':' + device.port+ '/volume',
+          timeout : 10000,
+          data    : '<volume>' + device.volume +'</volume>',
+          headers: { "Content-Type": 'application/x-www-form-urlencoded' },
+          transformResponse : function(data) {
+            // string -> XML document object
+            return $.parseXML(data);
           }
-        );
+        }).success(function(data, status, headers, config) {
+          console.dir(data);  // XML document object
+          $scope.xml = data.documentElement.innerHTML;
+        }).error(function(data, status, headers, config) {
+          console.log('FAILED');
+          console.log(status);
+        });
       },
       getVolume: function(device) {
-        $http.get(device.hostName + '/volume').then(
+        $http.get(device.hostName + ':' + device.port + '/volume').then(
           function(result){
             console.log('succesfully got volume');
             device.volume = 50;
