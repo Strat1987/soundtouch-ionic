@@ -41,7 +41,7 @@ angular.module('SoundTouchHack.service.DiscoverService', [])
   function getDevicesForIOS(devices, error) {
     console.log('Searching using Bonjoir (IOS)');
     // "_soundtouch._tcp"
-    window.plugins.dnssd.browse("_daap._tcp", "local", function (serviceName, regType, domain, moreComing) {
+    window.plugins.dnssd.browse("_soundtouch._tcp", "local", function (serviceName, regType, domain, moreComing) {
       //add new device to list
       factory.devices.push({
         serviceName: serviceName,
