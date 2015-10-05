@@ -4,15 +4,6 @@ angular.module('SoundTouchHack.service.SoundTouchAPI', [])
 
     return {
       setVolume: function(device) {
-        /*$http.post(device.hostName + ':' + device.port, '').then(
-          function(result){
-            console.log('succesfully posted volume');
-          },
-          function(error) {
-            console.log('error while posting volume' + error);
-          }
-        );*/
-
         $http({
           method  : 'POST',
           url     : 'http://' + device.hostName + ':' + device.port+ '/volume',
