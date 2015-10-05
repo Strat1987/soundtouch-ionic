@@ -8,8 +8,10 @@ angular.module('SoundTouchHack.controller.SoundTouchController', ['SoundTouchHac
 
     if (typeof $scope.device !== 'undefined') {
       $scope.device.volume = SoundtouchAPI.getVolume($scope.device);
-      console.log('SoundtouchAPI getVolume: ' + $scope.volume);
+      console.log('SoundtouchAPI getVolume: ' + $scope.now_playing);
 
+      $scope.device.now_playing = SoundtouchAPI.getNowPlaying($scope.device);
+      console.log('SoundtouchAPI nowPlaying: ' + $scope.now_playing);
     }
   });
 
