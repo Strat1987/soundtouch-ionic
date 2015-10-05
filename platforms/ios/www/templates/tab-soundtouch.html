@@ -10,5 +10,8 @@
       <h5>Volume: {{device.volume}}</h5>
     </div>
     <button class="button button-block button-positive" ng-hide="device.serviceName" ng-click="selectDiscoverTab();">Select Device</button>
+
+    <button class="button button-block button-positive" ng-click="getVol();">Get Volume</button>
+    <div>{{xml}}</div>
   </ion-content>
 </ion-view>
