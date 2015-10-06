@@ -19,6 +19,9 @@
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
   </feature>
+  <feature name="fi.peekpoke.cordova.dnssd">
+    <param name="ios-package" value="CDVBonjour"/>
+  </feature>
   <platform name="android">
     <icon src="resources/android/icon/drawable-ldpi-icon.png" density="ldpi"/>
     <icon src="resources/android/icon/drawable-mdpi-icon.png" density="mdpi"/>
@@ -67,4 +70,38 @@
     <splash src="resources/ios/splash/Default@2x~iphone.png" height="960" width="640"/>
     <splash src="resources/ios/splash/Default~iphone.png" height="480" width="320"/>
   </platform>
+  <!-- A wildcard can be used to whitelist the entire network,
+     over HTTP and HTTPS.
+     *NOT RECOMMENDED* -->
+  <allow-navigation href="*" />
+
+  <!-- Allow links to web pages to open in a browser -->
+  <allow-intent href="http://*/*" />
+  <allow-intent href="https://*/*" />
+
+  <!-- Allow links to example.com to open in a browser -->
+  <allow-intent href="http://example.com/*" />
+
+  <!-- Wildcards are allowed for the protocol, as a prefix
+       to the host, or as a suffix to the path -->
+  <allow-intent href="*://*.example.com/*" />
+
+  <!-- Allow SMS links to open messaging app -->
+  <allow-intent href="sms:*" />
+
+  <!-- Allow tel: links to open the dialer -->
+  <allow-intent href="tel:*" />
+
+  <!-- Allow geo: links to open maps -->
+  <allow-intent href="geo:*" />
+
+  <!-- Allow all unrecognized URLs to open installed apps
+       *NOT RECOMMENDED* -->
+  <allow-intent href="*" />
+
+  <!-- Enable all requests, inline styles, and eval() -->
+  <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'"/>
+
+  <!-- Don't block any requests -->
+  <access origin="*" />
 </widget>

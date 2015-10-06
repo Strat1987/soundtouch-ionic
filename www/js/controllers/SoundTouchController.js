@@ -1,6 +1,6 @@
 angular.module('SoundTouchHack.controller.SoundTouchController', ['SoundTouchHack.service.SoundTouchAPI','ngWebSocket'])
 
-.controller('SoundtouchController', function($scope, $localStorage, SoundtouchAPI, $window,$websocket) {
+.controller('SoundtouchController', function($scope, $localStorage, SoundtouchAPI, $window, $websocket) {
 
   $scope.$on('$ionicView.enter', function() {
 
