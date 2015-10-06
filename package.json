@@ -22,16 +22,20 @@
     "cordova-plugin-splashscreen",
     "com.ionic.keyboard",
     {
-      "locator": "https://github.com/driftyco/cordova-plugin-discovery",
-      "id": "com.ionicsdk.discovery"
-    },
-    {
       "locator": "https://github.com/vstirbu/ZeroConf",
       "id": "com.triggertrap.ZeroConf"
+    },
+    {
+      "locator": "https://github.com/jarnoh/cordova-dnssd",
+      "id": "fi.peekpoke.cordova.dnssd"
     }
   ],
   "cordovaPlatforms": [
     "android",
     "ios"
-  ]
+  ]/*,
+  "scripts": {
+    "postinstall": "ionic state restore",
+    "clean": "ionic platform remove android; ionic platform remove ios; git checkout package.json"
+  }*/
 }
