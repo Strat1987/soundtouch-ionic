@@ -3,7 +3,6 @@ angular.module('SoundTouchHack.service.SoundTouchAPI', [])
   .factory('SoundtouchAPI', function($http) {
 
     return {
-
       /*
       <nowPlaying deviceID="$MACADDR" source="$SOURCE">
            <ContentItem source="$SOURCE" location="$STRING" sourceAccount="$STRING" isPresetable="$BOOL">
@@ -70,7 +69,6 @@ angular.module('SoundTouchHack.service.SoundTouchAPI', [])
           }
         }).success(function(data, status, headers, config) {
           console.log(data);  // XML document object
-          alert('OK');
           //$scope.xml = data.documentElement.innerHTML;
         }).error(function(data, status, headers, config) {
           console.log('FAILED');
