@@ -7,6 +7,7 @@ angular.module('SoundTouchHack.controller.SoundTouchController', ['SoundTouchHac
     $scope.device = $localStorage.device;
 
     if (typeof $scope.device !== 'undefined') {
+      $scope.device.volume = 20;
       $scope.device.volume = SoundtouchAPI.getVolume($scope.device);
       console.log('SoundtouchAPI getVolume: ' + $scope.now_playing);
 
@@ -14,6 +15,10 @@ angular.module('SoundTouchHack.controller.SoundTouchController', ['SoundTouchHac
       console.log('SoundtouchAPI nowPlaying: ' + $scope.now_playing);
     }
   });
+
+    $scope.getVol = function() {
+      $scope.device.volume = SoundtouchAPI.getVolume($scope.device)
+    };
 
   $scope.volumeChanged = function() {
     console.log('Volume has changed: ' + $scope.device.volume);
