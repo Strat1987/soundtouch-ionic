@@ -28,6 +28,10 @@
     {
       "locator": "https://github.com/jarnoh/cordova-dnssd",
       "id": "fi.peekpoke.cordova.dnssd"
+    },
+    {
+      "locator": "https://github.com/leecrossley/cordova-plugin-transport-security.git",
+      "id": "cordova-plugin-transport-security"
     }
   ],
   "cordovaPlatforms": [

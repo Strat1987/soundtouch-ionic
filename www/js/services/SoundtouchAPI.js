@@ -47,7 +47,7 @@ angular.module('SoundTouchHack.service.SoundTouchAPI', [])
           headers: { "Content-Type": 'application/x-www-form-urlencoded' },
           transformResponse : function(data) {
             // string -> XML document object
-            return data;
+            return xmlToJson($.parseXML(data));
           }
         }).success(function(data, status, headers, config) {
           console.log(data);  // XML document object
@@ -65,10 +65,11 @@ angular.module('SoundTouchHack.service.SoundTouchAPI', [])
           headers: { "Content-Type": 'application/x-www-form-urlencoded' },
           transformResponse : function(data) {
             // string -> XML document object
-            return data;
+            return xmlToJson($.parseXML(data));
           }
         }).success(function(data, status, headers, config) {
           console.log(data);  // XML document object
+          device.volume = data.volume.actualvolume['#text'] * 1;
           //$scope.xml = data.documentElement.innerHTML;
         }).error(function(data, status, headers, config) {
           console.log('FAILED');
