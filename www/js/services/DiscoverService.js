@@ -2,8 +2,6 @@ angular.module('SoundTouchHack.service.DiscoverService', [])
 
 .factory('DiscoverService', function() {
 
-  var PROTOCOL = '_soundtouch._tcp.local.';
-
   var factory = {};
   factory.devices = [];
 
@@ -40,8 +38,19 @@ angular.module('SoundTouchHack.service.DiscoverService', [])
 
   function getDevicesForIOS(devices, error) {
     console.log('Searching using Bonjoir (IOS)');
+
+    if (DNSSD == undefined) {
+      error("Clould not find DNS Library");
+      return
+    }
+
+    if (!angular.isDefined(factory.dnssd)) {
+      factory.dnssd = new DNSSD();
+    }
+
+
     // "_soundtouch._tcp"
-    window.plugins.dnssd.browse("_soundtouch._tcp", "local", function (serviceName, regType, domain, moreComing) {
+    factory.dnssd.browse("_soundtouch._tcp", "local", function (serviceName, regType, domain, moreComing) {
       //add new device to list
       factory.devices.push({
         serviceName: serviceName,
