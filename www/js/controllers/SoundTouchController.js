@@ -4,11 +4,11 @@ angular.module('SoundTouchHack.controller.SoundTouchController', ['SoundTouchHac
 
   $scope.$on('$ionicView.enter', function() {
 
-    $localStorage.device = {
+    /*$localStorage.device = {
         serviceName: 'TEST',
         hostName: '68c90b299e00.local.',
         port: '8090'
-    };
+    };*/
 
     $scope.device = $localStorage.device;
 
@@ -23,14 +23,16 @@ angular.module('SoundTouchHack.controller.SoundTouchController', ['SoundTouchHac
   });
 
     $scope.startSocket = function() {
-      SoundtouchAPI.getVolume($scope.device);
-      //$scope.device.volume = SoundtouchAPI.getVolume($scope.device);
 
       var dataStream = $websocket('ws://' + $scope.device.hostName + ":8080", 'gabbo');
 
       dataStream.onMessage(function(message) {
         console.log(message.data);
-        console.log(xmlToJson($.parseXML(message.data)));
+        var data = xmlToJson($.parseXML(message.data));
+        if (angular.isDefined(data.updates.volumeUpdated)) {
+          console.log(data.updates.volumeUpdated.volume.actualvolume['#text']);
+          $scope.volumeSocket = data.updates.volumeUpdated.volume.actualvolume['#text'] * 1;
+        }
       });
 
     };
