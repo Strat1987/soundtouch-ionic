@@ -29,9 +29,11 @@ angular.module('SoundTouchHack.controller.SoundTouchController', ['SoundTouchHac
       dataStream.onMessage(function(message) {
         console.log(message.data);
         var data = xmlToJson($.parseXML(message.data));
-        if (angular.isDefined(data.updates.volumeUpdated)) {
-          console.log(data.updates.volumeUpdated.volume.actualvolume['#text']);
-          $scope.volumeSocket = data.updates.volumeUpdated.volume.actualvolume['#text'] * 1;
+        if (angular.isDefined(data.updates)) {
+          if (angular.isDefined(data.updates.volumeUpdated)) {
+            console.log(data.updates.volumeUpdated.volume.actualvolume['#text']);
+            $scope.volumeSocket = data.updates.volumeUpdated.volume.actualvolume['#text'] * 1;
+          }
         }
       });
 
