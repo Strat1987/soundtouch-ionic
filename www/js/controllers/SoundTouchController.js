@@ -28,7 +28,9 @@ angular.module('SoundTouchHack.controller.SoundTouchController', ['SoundTouchHac
 
       dataStream.onMessage(function(message) {
         console.log(message.data);
+
         var data = xmlToJson($.parseXML(message.data));
+        $scope.socketData = JSON.stringify(data);
         if (angular.isDefined(data.updates)) {
           if (angular.isDefined(data.updates.volumeUpdated)) {
             console.log(data.updates.volumeUpdated.volume.actualvolume['#text']);
