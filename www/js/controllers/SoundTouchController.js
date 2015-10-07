@@ -1,6 +1,6 @@
-angular.module('SoundTouchHack.controller.SoundTouchController', ['SoundTouchHack.service.SoundTouchAPI','ngWebSocket'])
+angular.module('SoundTouchHack.controller.SoundTouchController', ['SoundTouchHack.service.SoundTouchAPI','SoundTouchHack.service.SoundTouchWebSocket'])
 
-.controller('SoundtouchController', function($scope, $localStorage, SoundtouchAPI, $window, $websocket) {
+.controller('SoundtouchController', function($scope, $localStorage, SoundtouchAPI, $window, SoundtouchWebSocket) {
 
   $scope.$on('$ionicView.enter', function() {
 
@@ -24,19 +24,12 @@ angular.module('SoundTouchHack.controller.SoundTouchController', ['SoundTouchHac
 
     $scope.startSocket = function() {
 
-      var dataStream = $websocket('ws://' + $scope.device.hostName + ":8080", 'gabbo');
-
-      dataStream.onMessage(function(message) {
-        console.log(message.data);
-
-        var data = xmlToJson($.parseXML(message.data));
-        $scope.socketData = JSON.stringify(data);
-        if (angular.isDefined(data.updates)) {
-          if (angular.isDefined(data.updates.volumeUpdated)) {
-            console.log(data.updates.volumeUpdated.volume.actualvolume['#text']);
-            $scope.volumeSocket = data.updates.volumeUpdated.volume.actualvolume['#text'] * 1;
-          }
-        }
+      SoundtouchWebSocket.start($scope.device);
+      SoundtouchWebSocket.registerVolumeUpdates(function(volume){
+        console.log("UPDATE: " + volume);
+        //$scope.apply(function() {
+          $scope.volumeSocket = volume;
+        //})
       });
 
     };
